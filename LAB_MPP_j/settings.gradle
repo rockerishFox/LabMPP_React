@@ -1,0 +1,9 @@
+rootProject.name = 'lab_mpp_java'
+include 'model'
+include 'networking'
+include 'service'
+include 'repository'
+include 'utils'
+include 'server'
+include 'rest-controller'
+

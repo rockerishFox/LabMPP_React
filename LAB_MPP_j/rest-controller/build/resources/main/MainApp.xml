@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="jdbcProps" location="classpath:bd.config"/>
+
+    <bean id="valMeci" class="validator.MeciValidator"/>
+    <bean id="valEchipa" class="validator.EchipaValidator"/>
+    <bean id="valVanzare" class="validator.VanzareValidator"/>
+    <bean id="valUser" class="validator.UtilizatorValidator"/>
+
+    <bean id="jdbcRepoEchipa" class="repository.EchipaJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+        <constructor-arg ref="valEchipa"/>
+    </bean>
+
+    <bean id="jdbcRepoMeci" class="repository.MeciJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+        <constructor-arg ref="valMeci"/>
+        <constructor-arg ref="jdbcRepoEchipa"/>
+    </bean>
+
+    <bean id="jdbcRepoVanzari" class="repository.VanzareJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+        <constructor-arg ref="valVanzare"/>
+        <constructor-arg ref="jdbcRepoMeci"/>
+    </bean>
+
+    <bean id="jdbcRepoUser" class="repository.UtilizatorJdbcRepository">
+        <constructor-arg ref="jdbcProps"/>
+        <constructor-arg ref="valUser"/>
+    </bean>
+
+<!--    <bean id="serviceUser" class="services.UtilizatorService">-->
+<!--        <constructor-arg ref="jdbcRepoUser"/>-->
+<!--        <constructor-arg ref="jdbcRepoMeci"/>-->
+<!--        <constructor-arg ref="jdbcRepoVanzari"/>-->
+<!--    </bean>-->
+</beans>

@@ -1,0 +1,12 @@
+package RPCprotocol;
+
+public enum ResponseType {
+    OK, ERROR, UPDATE,
+    GET_BY_USERNAME,
+    GET_ALL_MECIURI,
+    ADD_TO_LOGGED_USERS,
+    FIND_MECI_BY_ID,
+    GET_TOTAL_BILETE_CUMPARATE_FOR_MECI,
+    GET_LAST_FREE_ID_VANZARI,
+    ADD_VANZARE
+}
